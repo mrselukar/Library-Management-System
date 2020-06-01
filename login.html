@@ -1,0 +1,119 @@
+
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="log_signin_page.css">
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+        <meta charset="utf-8">
+        <title>Login</title>
+        <style>
+        #submit {
+            background-color:rgb(48, 167, 135);
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            border-bottom: solid;
+            color: white;
+            padding: 5px 32px;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            color: white;
+        }
+
+        #common
+        { margin-top: 60px;
+          text-align: center;
+          background-image: url(Resources/landing_background.jpeg);
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+        #div_main
+        {
+          background-color: rgba(255, 255, 255, 0.85);
+        }
+        #div1
+        {
+          background-color: rgba(33, 131, 148, 0.65);
+        }
+        .heading
+        {
+          font-family: 'Oswald', sans-serif;
+        }
+        #div_login
+        { border:none;
+          background-color:rgba(28, 204, 156, 0.99);
+          color: white;
+          border-radius: 5%;
+          border-color: white;
+          margin-top: -45px;
+
+        }
+        input{
+          padding:5px 32px;
+          border: none;
+          padding-left: 25px;
+          background-color: rgb(20, 56, 80);
+          color:white;
+
+        }
+
+
+        </style>
+    </head>
+
+<body class="container-fluid" id="common">
+  <div class="container" id = "div_main">
+        <h1 class="heading"> Central Library</h1>
+        <h2 class="heading">Indian Institute of Information Technology Nagpur</h2>
+        <br><br>
+        <img src="User.png" style="circle-radius:25%"width = 150px;>
+        <div class=row>
+
+              <div class='col-md-4'></div>
+              <div class='col-md-4' id="div_login">
+                <br>
+                <h3 class="heading">Login</h3>
+                  <form action="" method="POST"><br>
+                    <input type="text" name="eid" value="" placeholder="Enrollment ID*" required><br><br>
+                    <input type="password" name="pwd" vlaue="" placeholder="Password*" required><br><br>
+                    <input type="submit" name="login" value="Login"id="submit"><br><br><br>
+                  </form>
+                  <?php
+                  if (isset($_POST['login']))
+                  {
+                  if(!$row = mysqli_fetch_assoc($result))
+                  {
+                    echo "Your Username or password is incorrect !"."<br>";
+                  }
+                }
+                  ?>
+                    <span>New User Register Below<span><br>
+                    <a href="register.php"><button id="submit">Register Now</button></a>
+                    <br><br>
+              </div>
+              <div class='col-md-4'></div>
+       </div>
+       <br><br>
+       <?php
+            if(isset($_SESSION['eid']))
+            {
+              if($_SESSION['eid'] == '1001')
+              {
+                header("Location: admin.php");
+              }
+              else
+              {
+                header("Location: home.php");
+              }
+            }
+            else {
+              echo "You are currently not logged in";
+            }
+        ?>
+  </div>
+</body>
+</html>
